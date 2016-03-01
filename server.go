@@ -14,9 +14,9 @@ import (
 )
 
 func main() {
-	// Creates a gin router with default middleware:
-	// logger and recovery (crash-free) middleware
 	router := gin.Default()
+    router.Static("/assets", "./assets")
+	router.StaticFS("/web", http.Dir("./web"))
 
 	router.LoadHTMLGlob("templates/*")
 
@@ -26,10 +26,16 @@ func main() {
 			fmt.Println("error: " + err.Error())
 		}
 
-		c.HTML(http.StatusOK, "flavors.tmpl", gin.H{
-			"flavors": result,
-		})
+		obj := gin.H{ "flavors": result }
+		c.HTML(http.StatusOK, "flavors.tmpl", obj)
 	})
+    
+    router.GET("/home", func(c *gin.Context) {
+		router.LoadHTMLGlob("web/home/*")
+		obj := gin.H{"title": "Home"}
+		c.HTML(200, "home.tmpl", obj)
+	})
+  
 
 	router.Run(":3001")
 }
