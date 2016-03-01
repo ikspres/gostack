@@ -355,6 +355,14 @@
                                 </ul>
                                 <!-- third-level-items -->
                             </li>
+                            <li>
+                                <a href="#">Third Level <span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    {{range .flavors}}
+                                        <li> <a href="#"> {{.}} </a></li>
+                                    {{end}}
+                                </ul>
+                            </li>
                         </ul>
                         <!-- second-level-items -->
                     </li>

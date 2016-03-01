@@ -15,7 +15,7 @@ import (
 
 func main() {
 	router := gin.Default()
-    router.Static("/assets", "./assets")
+	router.Static("/assets", "./assets")
 	router.StaticFS("/web", http.Dir("./web"))
 
 	router.LoadHTMLGlob("templates/*")
@@ -26,16 +26,19 @@ func main() {
 			fmt.Println("error: " + err.Error())
 		}
 
-		obj := gin.H{ "flavors": result }
+		obj := gin.H{"flavors": result}
 		c.HTML(http.StatusOK, "flavors.tmpl", obj)
 	})
-    
-    router.GET("/home", func(c *gin.Context) {
+
+	router.GET("/home", func(c *gin.Context) {
 		router.LoadHTMLGlob("web/home/*")
-		obj := gin.H{"title": "Home"}
+		result, err := getFlavors()
+		if err != nil {
+			fmt.Println("error: " + err.Error())
+		}
+		obj := gin.H{"flavors": result}
 		c.HTML(200, "home.tmpl", obj)
 	})
-  
 
 	router.Run(":3001")
 }
