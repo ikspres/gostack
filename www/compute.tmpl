@@ -1,0 +1,108 @@
+{{define "content"}}
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+                <li class="active">{{.title}}</li>
+			</ol>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-lg-12">
+                <h1 class="page-header">{{.title}}</h1>
+			</div>
+		</div><!--/.row-->
+				
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">Images </div>
+					<div class="panel-body">
+						<table data-toggle="table" data-url="/remote/images"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+						    <thead>
+						    <tr>
+						        <th data-field="ID" data-align="right">ID</th>
+						        <th data-field="Name">Name</th>
+						        <th data-field="Status">Status</th>
+						        <th data-field="Created">Crated</th>
+						    </tr>
+						    </thead>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div><!--/.row-->	
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">Flavor types</div>
+					<div class="panel-body">
+						<table data-toggle="table" data-url="/remote/flavors" data-row-style="rowStyle">
+						    <thead>
+						    <tr>
+						        <th data-field="ID" data-sortable="true"> ID</th>
+						        <th data-field="Name"  data-sortable="true"> Name</th>
+						        <th data-field="Disk"  data-sortable="true"> Disk</th>
+						        <th data-field="RAM" data-sortable="true"> RAM</th>
+						    </tr>
+						    </thead>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">Servers</div>
+					<div class="panel-body">
+						<table data-toggle="table" id="table-style" data-url="/remote/servers" data-row-style="rowStyle">
+						    <thead>
+						    <tr>
+						        <th data-field="ID" data-align="right">ID</th>
+						        <th data-field="Name">Name</th>
+						        <th data-field="Status">Status</th>
+						        <th data-field="Updated">Updated</th>
+						    </tr>
+						    </thead>
+						</table>
+						<script>
+						    $(function () {
+						        $('#hover, #striped, #condensed').click(function () {
+						            var classes = 'table';
+						
+						            if ($('#hover').prop('checked')) {
+						                classes += ' table-hover';
+						            }
+						            if ($('#condensed').prop('checked')) {
+						                classes += ' table-condensed';
+						            }
+						            $('#table-style').bootstrapTable('destroy')
+						                .bootstrapTable({
+						                    classes: classes,
+						                    striped: $('#striped').prop('checked')
+						                });
+						        });
+						    });
+						
+						    function rowStyle(row, index) {
+						        var classes = ['active', 'success', 'info', 'warning', 'danger'];
+						
+						        if (index % 2 === 0 && index / 2 < classes.length) {
+						            return {
+						                classes: classes[index / 2]
+						            };
+						        }
+						        return {};
+						    }
+						</script>
+					</div>
+				</div>
+			</div>
+		</div><!--/.row-->	
+	</div><!--/.main-->
+{{end}}
+
+{{define "contentjs"}}
+	<script src="js/bootstrap-table.js"></script>
+{{end}}
