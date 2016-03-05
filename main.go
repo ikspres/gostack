@@ -11,9 +11,9 @@ import (
 
 func main() {
 	router := gin.Default()
-	router.StaticFS("/css", http.Dir("./lumino/css"))
-	router.StaticFS("/fonts", http.Dir("./lumino/fonts"))
-	router.StaticFS("/js", http.Dir("./lumino/js"))
+	router.StaticFS("/css", http.Dir("./www/css"))
+	router.StaticFS("/fonts", http.Dir("./www/fonts"))
+	router.StaticFS("/js", http.Dir("./www/js"))
 
 	router.HTMLRender = createMyRender()
 
@@ -33,9 +33,9 @@ func main() {
 
 func createMyRender() multitemplate.Render {
 	r := multitemplate.New()
-	r.AddFromFiles("index", "lumino/base.tmpl", "lumino/menu.tmpl", "lumino/index.tmpl")
-	r.AddFromFiles("charts", "lumino/base.tmpl", "lumino/menu.tmpl", "lumino/charts.tmpl")
-	r.AddFromFiles("compute", "lumino/base.tmpl", "lumino/menu.tmpl", "lumino/compute.tmpl")
+	r.AddFromFiles("index", "www/base.tmpl", "www/menu.tmpl", "www/index.tmpl")
+	r.AddFromFiles("charts", "www/base.tmpl", "www/menu.tmpl", "www/charts.tmpl")
+	r.AddFromFiles("compute", "www/base.tmpl", "www/menu.tmpl", "www/compute.tmpl")
 
 	return r
 }
