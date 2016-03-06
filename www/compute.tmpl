@@ -52,6 +52,7 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="col-md-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">Servers</div>
@@ -66,43 +67,59 @@
 						    </tr>
 						    </thead>
 						</table>
-						<script>
-						    $(function () {
-						        $('#hover, #striped, #condensed').click(function () {
-						            var classes = 'table';
-						
-						            if ($('#hover').prop('checked')) {
-						                classes += ' table-hover';
-						            }
-						            if ($('#condensed').prop('checked')) {
-						                classes += ' table-condensed';
-						            }
-						            $('#table-style').bootstrapTable('destroy')
-						                .bootstrapTable({
-						                    classes: classes,
-						                    striped: $('#striped').prop('checked')
-						                });
-						        });
-						    });
-						
-						    function rowStyle(row, index) {
-						        var classes = ['active', 'success', 'info', 'warning', 'danger'];
-						
-						        if (index % 2 === 0 && index / 2 < classes.length) {
-						            return {
-						                classes: classes[index / 2]
-						            };
-						        }
-						        return {};
-						    }
-						</script>
 					</div>
 				</div>
 			</div>
+
 		</div><!--/.row-->	
 	</div><!--/.main-->
 {{end}}
 
 {{define "contentjs"}}
 	<script src="js/bootstrap-table.js"></script>
+    <script>
+        $(function () {
+            $('#hover, #striped, #condensed').click(function () {
+                var classes = 'table';
+
+                if ($('#hover').prop('checked')) {
+                    classes += ' table-hover';
+                }
+                if ($('#condensed').prop('checked')) {
+                    classes += ' table-condensed';
+                }
+                $('#table-style').bootstrapTable('destroy')
+                .bootstrapTable({
+                    classes: classes,
+                    striped: $('#striped').prop('checked')
+                });
+            });
+        });
+
+        function rowStyle(row, index) {
+            var classes = ['active', 'success', 'info', 'warning', 'danger'];
+
+            if (index % 2 === 0 && index / 2 < classes.length) {
+                return {
+                    classes: classes[index / 2]
+                };
+            }
+            return {};
+        }
+
+        function linkFormatter(value) {
+            return '<button id ="'+ value +'" type="button" class="btn btn-link">'+value+'</button>';     
+        }
+
+        window.linkEvents = {
+            'click button.btn-link': function (e) {
+                alert($(e).target);
+            }
+        };
+    </script>
+    <script>
+        $(function () {
+            $("#m_compute").addClass('active');
+        });
+    </script>
 {{end}}
