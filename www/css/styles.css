@@ -930,6 +930,11 @@ h1.page-header {
 }
 
 
+.clearfix {
+    overflow: auto;
+}
+
+
 
 
 
