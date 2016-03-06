@@ -1,0 +1,19 @@
+			<div class="col-lg-12 table-responsivel" id="xxx">
+						<table data-popup="table" data-toggle="table" data-url="/remote/subnets_of_network" data-row-style="">
+						    <thead>
+						    <tr>
+						        <th data-field="id" data-sortable="true"> ID</th>
+						        <th data-field="name"  data-sortable="true"> Name</th>
+						        <th data-field="network_id"  data-sortable="true"> Network ID</th>
+						        <th data-field="cidr" data-sortable="true"> CIDR</th>
+						        <th data-field="gateway_ip" data-sortable="true"> GATEWAY</th>
+						    </tr>
+						    </thead>
+						</table>
+			</div>
+            <script>
+                $(function () {
+                    $('[data-popup="table"]').bootstrapTable();
+                    $(".modal-body").addClass("clearfix");
+                });
+            </script>
