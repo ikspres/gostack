@@ -18,7 +18,8 @@
 				<div class="panel panel-blue panel-widget ">
 					<div class="row no-padding">
 						<div class="col-sm-3 col-lg-5 widget-left">
-							<svg class="glyph stroked bag"><use xlink:href="#stroked-bag"></use></svg>
+                            <svg class="glyph stroked notepad "><use xlink:href="#stroked-notepad"/></svg>
+
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
                             <div class="large">{{.flavors | len }}</div>
@@ -31,7 +32,7 @@
 				<div class="panel panel-orange panel-widget">
 					<div class="row no-padding">
 						<div class="col-sm-3 col-lg-5 widget-left">
-							<svg class="glyph stroked empty-message"><use xlink:href="#stroked-empty-message"></use></svg>
+                            <svg class="glyph stroked upload"><use xlink:href="#stroked-upload"/></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
                             <div class="large">{{.images | len }}</div>
@@ -44,7 +45,7 @@
 				<div class="panel panel-teal panel-widget">
 					<div class="row no-padding">
 						<div class="col-sm-3 col-lg-5 widget-left">
-							<svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg>
+                            <svg class="glyph stroked desktop"><use xlink:href="#stroked-desktop"/></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
                             <div class="large">{{.servers | len }}</div>
@@ -272,4 +273,9 @@
 {{end}}
 
 {{define "contentjs"}}
+<script>
+    $(function () {
+        $("#m_index").addClass('active');
+    });
+</script>
 {{end}}
